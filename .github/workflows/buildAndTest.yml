@@ -21,7 +21,7 @@ jobs:
           distribution: 'zulu'
 
       - name: execute mvn build
-        run: mvn -B package -DskipTests
+        run: mvn -B -q package -DskipTests
 
       - name: execute mvn tests
-        run: mvn -B test
+        run: mvn -B -q test
