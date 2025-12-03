@@ -1,5 +1,5 @@
 name: build and test with maven
-run-name: mvn:build:test
+run-name: mvn:build:test -
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
         run: mvn -B -q package -DskipTests
 
       - name: execute mvn tests
-        run: mvn -B -q test
+        run: mvn -B test
 
 #      - name: Generate Surefire report
 #        run: mvn surefire-report:report-only
