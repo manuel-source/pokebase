@@ -11,11 +11,4 @@ class PokebaseApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
-	@Test
-	void failingTest() {
-		// absichtlich ein Fehler
-		fail("Dieser Test soll absichtlich fehlschlagen!");
-	}
-
 }
