@@ -26,11 +26,11 @@ jobs:
       - name: execute mvn tests
         run: mvn -B -q test
 
-      - name: Generate Surefire report
-        run: mvn surefire-report:report-only
+#      - name: Generate Surefire report
+#        run: mvn surefire-report:report-only
 
       - name: Upload Test Report as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test-report
-          path: target/site
+          name: surefire-report
+          path: target/surefire-reports
