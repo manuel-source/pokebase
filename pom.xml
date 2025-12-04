@@ -170,6 +170,7 @@
 						</goals>
 					</execution>
 				</executions>
+
 			</plugin>
 			<!-- Groovy Maven Plugin -->
 			<plugin>
@@ -180,6 +181,7 @@
 					<execution>
 						<goals>
 							<goal>compile</goal>
+							<goal>compileTests</goal>
 							<goal>generateStubs</goal>
 							<goal>generateTestStubs</goal>
 							<goal>removeStubs</goal>
