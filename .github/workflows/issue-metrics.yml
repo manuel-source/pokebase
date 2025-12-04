@@ -1,6 +1,8 @@
 name: Monthly issue metrics
 on:
   workflow_dispatch:
+
+
   schedule:
     - cron: "3 2 1 * *"
 
@@ -27,12 +29,26 @@ jobs:
           #Set an environment variable with the date range
           echo "$first_day..$last_day"
           echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
+          
+          # Heute
+          end_date=$(date +%Y-%m-%d)
+    
+          # 13 Tage zurück (damit inkl. heute 14 Tage)
+          start_date=$(date -d "13 days ago" +%Y-%m-%d)
+    
+          # Set environment variable
+          echo "last_14_days=$start_date..$end_date" >> $GITHUB_ENV
+    
+          # Optional: zur Kontrolle
+          echo "Date range: $start_date..$end_date"
+      
 
       - name: Run issue-metrics tool
         uses: github/issue-metrics@v3
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SEARCH_QUERY: 'repo:manuel-source/pokebase is:issue created:${{ env.last_month }} -reason:"not planned"'
+#          SEARCH_QUERY: 'repo:manuel-source/pokebase is:issue created:${{ env.last_month }} -reason:"not planned"'
+          SEARCH_QUERY: 'repo:manuel-source/pokebase is:issue created:${{ env.last_14_days }} -reason:"not planned"'
 
       - name: Create issue
         uses: peter-evans/create-issue-from-file@v5
