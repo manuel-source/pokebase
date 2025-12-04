@@ -13,6 +13,10 @@ public class Controller {
 
     PokeApiFeign pokeApiFeign;
 
+    public Controller(PokeApiFeign pokeApiFeign) {
+        this.pokeApiFeign = pokeApiFeign;
+    }
+
     @GetMapping(value = "pokemon/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<String> getPokemon(@PathVariable String id) {
         String pokemon = pokeApiFeign.getPokemon(id);

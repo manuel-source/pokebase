@@ -1,5 +1,5 @@
 name: build and test with maven
-run-name: mvn:build:test - ${{ github.event.head_commit.message }}
+run-name: build and test - ${{ github.event.head_commit.message }}
 
 on:
   push:
@@ -21,13 +21,7 @@ jobs:
           distribution: 'zulu'
 
       - name: execute mvn build
-        run: mvn -B -q package -DskipTests
+        run: mvn -B package -DskipTests
 
       - name: execute mvn tests
-        run: mvn -B test surefire-report:report-only
-
-      - name: Upload Test Report as Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: surefire-report
-          path: target/site
+        run: mvn -B test
